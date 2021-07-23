@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+}
+
+.row {
+    margin: 10px 5px 0 5px;
+}
+
+.h-50 {
+    margin: 0 35px 0 35px;
+}
+
+#currentDate {
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
+
+#forecast {
+    border: 1px solid black;
+}
+
+#forecast:nth-child(1), #forecast:nth-child(2), #forecast:nth-child(3), #forecast:nth-child(4) {
+    margin-right: 10px;
+}
