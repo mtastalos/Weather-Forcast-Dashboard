@@ -12,8 +12,9 @@ header {
     margin: 10px 5px 0 5px;
 }
 
-.h-50 {
-    margin: 0 35px 0 35px;
+
+.h-50, .forecast-title {
+    margin: 0 35px 15px 35px;
 }
 
 #currentDate {
@@ -25,6 +26,6 @@ header {
     border: 1px solid black;
 }
 
-#forecast:nth-child(1), #forecast:nth-child(2), #forecast:nth-child(3), #forecast:nth-child(4) {
+.forecast #forecast:nth-child(1), #forecast:nth-child(2), #forecast:nth-child(3), #forecast:nth-child(4) {
     margin-right: 10px;
 }
