@@ -21,10 +21,7 @@ function dashDisplay(city) {
     
     //--display current day 
     var currentDayDisplay = $(
-        
-            '<h3>'+city+' ('+moment().format('l')+')<img src="http://openweathermap.org/img/wn/'+pastSearches[city].weather+'@2x.png" id="icon"></img></h3>'+
-
-       
+        '<h3 class="row">'+city+' ('+moment().format('l')+')<img src="http://openweathermap.org/img/wn/'+pastSearches[city].weather+'@2x.png" id="icon"></img></h3>'+
         '<p class="row">Temp: '+pastSearches[city].temp+' °F</p>'+
         '<p class="row">Wind: '+pastSearches[city].wind+' MPH</p>'+
         '<p class="row">Humidity: '+pastSearches[city].humidity+' %</p>'+
@@ -91,7 +88,6 @@ $('#search').on('click', function(){
                     return response2.json();
                 })
                 .then(function(searchResults) {
-                    console.log(searchResults)
                     var temperature = searchResults['current'].temp;
                     var humidity =  searchResults['current'].humidity;
                     var uvIndex =  searchResults['current'].uvi;
@@ -114,8 +110,8 @@ $('#search').on('click', function(){
                     dashDisplay(city);
                 });
         })
-        .catch(function(error){
-            window.alert(error);
+        .catch(function(){
+            window.alert("Make sure your spelling is correct and that you are searching a city that exists!");
         });
 })
 
