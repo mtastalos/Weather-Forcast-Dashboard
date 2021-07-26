@@ -18,10 +18,13 @@ function dashDisplay(city) {
         city = $('#pastSearches button').first().text();
         if(city==''){return}
     }    
-
+    
     //--display current day 
     var currentDayDisplay = $(
-        '<h3 class="row">'+city+' ('+moment().format('l')+')</h3>'+
+        
+            '<h3>'+city+' ('+moment().format('l')+')<img src="http://openweathermap.org/img/wn/'+pastSearches[city].weather+'@2x.png" id="icon"></img></h3>'+
+
+       
         '<p class="row">Temp: '+pastSearches[city].temp+' °F</p>'+
         '<p class="row">Wind: '+pastSearches[city].wind+' MPH</p>'+
         '<p class="row">Humidity: '+pastSearches[city].humidity+' %</p>'+
@@ -33,6 +36,7 @@ function dashDisplay(city) {
         var forecastDate = moment().add((i+1),'d').format('l');
         var forecastDisplay = $(
             '<h5 class="row">'+forecastDate+'</h5>'+
+            '<img class="row" src="http://openweathermap.org/img/wn/'+pastSearches[city].forecast[i].weather+'@2x.png" id="icon"></img>'+
             '<p class="row">Temp: '+pastSearches[city].forecast[i].temp+' °F</p>'+
             '<p class="row">Wind: '+pastSearches[city].forecast[i].wind+' MPH</p>'+
             '<p class="row">Humidity: '+pastSearches[city].forecast[i].humidity+' %</p>');
@@ -74,10 +78,11 @@ $('#search').on('click', function(){
             if(localStorage.getItem('search-history')){
                 searches = JSON.parse(localStorage.getItem('search-history'));
             }
-
             var lat = cordinates['coord'].lat;
             var lon =  cordinates['coord'].lon;
             var city = cordinates['name'];
+            
+
 
             fetch(
                 'https://api.openweathermap.org/data/2.5/onecall?lat='+lat+'&lon='+lon+'&exclude=minutely,hourly,alerts&units=imperial&appid=fa0e2d502955fffde3147fb635a2c723'
@@ -86,21 +91,24 @@ $('#search').on('click', function(){
                     return response2.json();
                 })
                 .then(function(searchResults) {
+                    console.log(searchResults)
                     var temperature = searchResults['current'].temp;
                     var humidity =  searchResults['current'].humidity;
                     var uvIndex =  searchResults['current'].uvi;
-                    var wind =  searchResults['current'].wind_gust;
+                    var wind =  searchResults['current'].wind_speed;
+                    var weather = searchResults['current'].weather[0].icon;
                     var forecast = {};
 
                     for (i=0;i<5;i++) {
                         var forecastTemp = searchResults['daily'][i].temp.day;
                         var forecastHum =  searchResults['daily'][i].humidity;
                         var forecastUVI =  searchResults['daily'][i].uvi;
-                        var forecastWind =  searchResults['daily'][i].wind_gust;
-                        forecast[i] = {'temp':forecastTemp, 'humidity':forecastHum, 'uvi':forecastUVI, 'wind':forecastWind}
+                        var forecastWind =  searchResults['daily'][i].wind_speed;
+                        var forecastWeather =  searchResults['daily'][i].weather[0].icon;
+                        forecast[i] = {'temp':forecastTemp, 'humidity':forecastHum, 'uvi':forecastUVI, 'wind':forecastWind, 'weather':forecastWeather}
                     }
 
-                    searches[city] = {'temp':temperature, 'humidity':humidity, 'uvi':uvIndex, 'wind':wind, 'forecast':forecast};
+                    searches[city] = {'temp':temperature, 'humidity':humidity, 'uvi':uvIndex, 'wind':wind, 'weather':weather, 'forecast':forecast};
                     localStorage.setItem('search-history', JSON.stringify(searches));
                     removeContent();
                     dashDisplay(city);

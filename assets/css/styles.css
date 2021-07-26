@@ -10,14 +10,14 @@ header {
     background: linear-gradient(to left, rgb(0, 0, 77), rgb(51, 102, 255));
 }
 
-h1, h2, h3, h4 , h5 {
-    font-weight: bold;
-}
-
 .row {
     margin: 10px 5px 0 5px;
 }
 
+h1, h2, h3, h4 , h5 {
+    font-weight: bold;
+    width: auto;
+}
 
 .h-50, .forecast-title {
     margin: 0 35px 15px 35px;
@@ -28,6 +28,11 @@ h1, h2, h3, h4 , h5 {
     margin-bottom: 10px;
 }
 
+#icon {
+    height: 40px;
+    width: auto;
+}
+
 #pastSearches {
     padding: 0;
 }
@@ -36,6 +41,10 @@ h1, h2, h3, h4 , h5 {
     border: 1px solid black;
     margin-bottom: 10px;
 }
+/* 
+#currentDate h3 {
+    
+} */
 
 #currentDate p {
     margin: 10px 0 5px 0;
