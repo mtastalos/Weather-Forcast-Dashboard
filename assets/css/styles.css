@@ -17,6 +17,15 @@ header {
     margin: 0 35px 15px 35px;
 }
 
+.btn {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#pastSearches {
+    padding: 0;
+}
+
 #currentDate {
     border: 1px solid black;
     margin-bottom: 10px;
