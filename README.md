@@ -13,7 +13,7 @@ Practice using server-side API calls whiling aiming to develop something that cl
 * Moment
 * Bootstrap
 
-## Reference I=image
+## Reference Image
  ![](assets/images/ref.JPG)
 
 ## Website
