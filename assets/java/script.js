@@ -8,6 +8,28 @@ function dashDisplay(city) {
         console.log(pastSearches)
     }
     else{console.log('false')}
+    //--display previous searches 
+
+
+    //--display current day 
+    var currentDayDisplay = $(
+        '<p class="row">Temp: '+searches[city].temp+' °F</p>'+
+        '<p class="row">Wind: '+searches[city].wind+' MPH</p>'+
+        '<p class="row">Humidity: '+searches[city].humidity+' %</p>'+
+        '<p class="row">UV Index: '+searches[city].uvi+'°F</p>');
+    $('#currentDate').append(currentDayDisplay);
+     
+    //--5-day forecast 
+    for(i=0;i<5;i++){
+        var forecastDate = moment().add((i+1),'d').format('L');
+        var forecastDisplay = $(
+            '<p class="row">'+forecastDate+'</p>'+
+            '<p class="row">Temp: '+searches[city].forecast[i].temp+' °F</p>'+
+            '<p class="row">Wind: '+searches[city].forecast[i].wind+' MPH</p>'+
+            '<p class="row">Humidity: '+searches[city].forecast[i].humidity+' %</p>');
+        $('[data-forecast='+(i+1)+']').append(forecastDisplay)
+    }
+    
 }
 
 //Current day data search

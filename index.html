@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="./assets/css/styles.css">
     <title>Forecast Dashboard</title>
 </head>
-<body class="container-fluid">
+<body class="container-fluid d-flex flex-column">
     <header class="row">
-        <h1>Title</h1>
+        <h1>Weather Dashboard</h1>
     </header>
     <section class="row">
         <div class="col-3">
@@ -20,14 +20,13 @@
             <div class="row">past search</div>
         </div>
         <div class="col-9">
-            <div class="row h-50" id="currentDate">
-                insert data here
+            <div class="row d-flex" id="currentDate">
             </div>
             <h3 class="row forecast-title">5-Day Forecast:</h3>
 
-            <div class="row h-50 forecast">
+            <div class="row forecast">
                 <div class="col sb" data-forecast="1"id="forecast">
-                    1
+                    
                 </div>
                 <div class="col sb" data-forecast="2" id="forecast">
                     
@@ -46,6 +45,7 @@
 
         </div>
     </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/java/script.js"></script>
 </body>
