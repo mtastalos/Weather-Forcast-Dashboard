@@ -6,6 +6,12 @@
 
 header {
     text-align: center;
+    color: white;
+    background: linear-gradient(to left, rgb(0, 0, 77), rgb(51, 102, 255));
+}
+
+h1, h2, h3, h4 , h5 {
+    font-weight: bold;
 }
 
 .row {
@@ -31,10 +37,31 @@ header {
     margin-bottom: 10px;
 }
 
-#forecast {
-    border: 1px solid black;
+#currentDate p {
+    margin: 10px 0 5px 0;
 }
 
-.forecast #forecast:nth-child(1), #forecast:nth-child(2), #forecast:nth-child(3), #forecast:nth-child(4) {
-    margin-right: 10px;
+#currentDate p:nth-last-child(1) {
+    margin-bottom: 20px;
+}
+
+.forecast-title{
+    margin-left: 5px;}
+
+#forecast {
+    border: 1px solid black;
+    color: white;
+    background-color: rgb(16, 48, 51);
+}
+
+#forecast h5 {
+    text-align: center;
+}
+
+#forecast p {
+    margin: 10px 0 15px 0;
+}
+
+#forecast:nth-child(1), #forecast:nth-child(2), #forecast:nth-child(3), #forecast:nth-child(4) {
+    margin-right: 25px;
 }

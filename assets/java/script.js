@@ -3,35 +3,36 @@ var searches = {};
 var searchesSplice;
 //Dashboard
 function dashDisplay(city) {
-    //--display previous searches 
-    var city = city
+    //--display previous searches found in localStorage
     var pastSearches = JSON.parse(localStorage.getItem('search-history'));
-
-    if (city==undefined) {
-        console.log("undefined")
-        city = $('#pastSearches button').first().text();
-    }else {removeContent()}
-    console.log(city)
     if (pastSearches !=null){
+        removeContent()
         for (var item in pastSearches){
             var pastSearch = $('<div><button class="btn btn-secondary" id="pastSearch">'+item+'</button></div>');
             $('#pastSearches').prepend(pastSearch);
         }
     }
 
+    //--if page is reloaded, display last search
+    if (city==undefined) {
+        city = $('#pastSearches button').first().text();
+        if(city==''){return}
+    }    
+
     //--display current day 
     var currentDayDisplay = $(
+        '<h3 class="row">'+city+' ('+moment().format('l')+')</h3>'+
         '<p class="row">Temp: '+pastSearches[city].temp+' °F</p>'+
         '<p class="row">Wind: '+pastSearches[city].wind+' MPH</p>'+
         '<p class="row">Humidity: '+pastSearches[city].humidity+' %</p>'+
-        '<p class="row">UV Index: '+pastSearches[city].uvi+'°F</p>');
+        '<p class="row">UV Index: '+(pastSearches[city].uvi/100).toFixed(2)+'</p>');
     $('#currentDate').append(currentDayDisplay);
      
     //--5-day forecast 
     for(i=0;i<5;i++) {
-        var forecastDate = moment().add((i+1),'d').format('L');
+        var forecastDate = moment().add((i+1),'d').format('l');
         var forecastDisplay = $(
-            '<p class="row">'+forecastDate+'</p>'+
+            '<h5 class="row">'+forecastDate+'</h5>'+
             '<p class="row">Temp: '+pastSearches[city].forecast[i].temp+' °F</p>'+
             '<p class="row">Wind: '+pastSearches[city].forecast[i].wind+' MPH</p>'+
             '<p class="row">Humidity: '+pastSearches[city].forecast[i].humidity+' %</p>');
@@ -61,7 +62,6 @@ function removeContent() {
 
 //Button click event for search
 $('#search').on('click', function(){
-    removeContent();
     var userInput = document.querySelector('#query').value.toLowerCase()
     fetch(
         'https://api.openweathermap.org/data/2.5/weather?q='+userInput+'&units=imperial&appid=fa0e2d502955fffde3147fb635a2c723'
@@ -102,6 +102,7 @@ $('#search').on('click', function(){
 
                     searches[city] = {'temp':temperature, 'humidity':humidity, 'uvi':uvIndex, 'wind':wind, 'forecast':forecast};
                     localStorage.setItem('search-history', JSON.stringify(searches));
+                    removeContent();
                     dashDisplay(city);
                 });
         })
