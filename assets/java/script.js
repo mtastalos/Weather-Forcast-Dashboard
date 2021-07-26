@@ -5,9 +5,10 @@ var searches = {};
 function dashDisplay(city) {
     var pastSearches = JSON.parse(localStorage.getItem('search-history'));
     if (pastSearches){
-        console.log(pastSearches)
+
     }
     else{console.log('false')}
+    
 }
 
 //Current day data search
