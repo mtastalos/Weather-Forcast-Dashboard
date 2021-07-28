@@ -27,9 +27,13 @@ function dashDisplay(city) {
         '<p class="row">Humidity: '+pastSearches[city].humidity+' %</p>'+
         '<p class="row">UV Index: <span class="uvi-box"> '+(pastSearches[city].uvi).toFixed(2)+'</span></p>');
     $('#currentDate').append(currentDayDisplay);
-    if((pastSearches[city].uvi).toFixed(2) > 0) {
+    if((pastSearches[city].uvi).toFixed(2) < 3) {
         $('.uvi-box').css({'background-color':'green', 'width':'auto', 'margin-left':'10px', 'border-radius':'5px'});
-    } else {$('.uvi-box').css({'background-color':'red', 'width':'auto', 'margin-left':'10px', 'border-radius':'5px'});}
+    } else if ((pastSearches[city].uvi).toFixed(2) < 6 && (pastSearches[city].uvi).toFixed(2) >= 3) {
+        $('.uvi-box').css({'background-color':'yellow', 'width':'auto', 'margin-left':'10px', 'border-radius':'5px'});
+    } else {
+        $('.uvi-box').css({'background-color':'red', 'width':'auto', 'margin-left':'10px', 'border-radius':'5px'});
+    }
 
     //--5-day forecast 
     for(i=0;i<5;i++) {
