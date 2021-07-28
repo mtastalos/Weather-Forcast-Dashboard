@@ -25,9 +25,12 @@ function dashDisplay(city) {
         '<p class="row">Temp: '+pastSearches[city].temp+' °F</p>'+
         '<p class="row">Wind: '+pastSearches[city].wind+' MPH</p>'+
         '<p class="row">Humidity: '+pastSearches[city].humidity+' %</p>'+
-        '<p class="row">UV Index: '+(pastSearches[city].uvi/100).toFixed(2)+'</p>');
+        '<p class="row">UV Index: <span class="uvi-box"> '+(pastSearches[city].uvi).toFixed(2)+'</span></p>');
     $('#currentDate').append(currentDayDisplay);
-     
+    if((pastSearches[city].uvi).toFixed(2) > 0) {
+        $('.uvi-box').css({'background-color':'green', 'width':'auto', 'margin-left':'10px', 'border-radius':'5px'});
+    } else {$('.uvi-box').css({'background-color':'red', 'width':'auto', 'margin-left':'10px', 'border-radius':'5px'});}
+
     //--5-day forecast 
     for(i=0;i<5;i++) {
         var forecastDate = moment().add((i+1),'d').format('l');
