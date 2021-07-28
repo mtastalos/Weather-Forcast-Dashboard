@@ -1,4 +1,4 @@
-# Weather-Forcast-Dashboard
+# Weather-Forecast-Dashboard
 The forecast dashboard allows the user to search for a city's current weather conditions, as well as, a five day forecast. Previous searches are stored to localStorage and displayed below search button.
 
 ## Goal
@@ -13,7 +13,7 @@ Practice using server-side API calls whiling aiming to develop something that cl
 * Moment
 * Bootstrap
 
-## Reference I=image
+## Reference Image
  ![](assets/images/ref.JPG)
 
 ## Website
